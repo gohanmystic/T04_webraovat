@@ -9,14 +9,14 @@
         </div>
     <div class="row">
         <div class="col-lg-12">
-            <form role="form">
-            	<label for="title">Tiêu đề</label>
+            <form role="form" name="postCreateUpdateForm">
+            	<label for="title">Tiêu đề <span>(*)</span></label>
                 <div class="form-group input-group">
                 	<span class="input-group-addon"><i class="fa fa-credit-card-alt fa-fw"></i></span>
-                    <input id="title" type="text" class="form-control">
+                    <input id="title" type="text" class="form-control" ng-model="vm.post.Title" required>
                 </div>
                 
-                <label for="category">Loại danh mục</label>
+                <label for="category">Loại danh mục <span>(*)</span></label>
                 <div class="form-group input-group">
                 	<span class="input-group-addon"><i class="fa fa-list-alt fa-fw"></i></span>
                     <select class="form-control" id="category">
@@ -26,7 +26,7 @@
                     </select>
                 </div>
                 
-                <label for="posttype">Loại bài đăng</label>
+                <label for="posttype">Loại bài đăng <span>(*)</span></label>
                 <div class="form-group input-group" id="posttype">
                     <span class="input-group-addon"><i class="fa fa-shopping-cart fa-fw"></i></span>
                     <div class="form-control">
@@ -45,25 +45,25 @@
                     <input id="picture" type="file" class="form-control">
                 </div>
                 
-                <label for="post-date">Ngày đăng</label>
+                <label for="post-date">Ngày đăng <span>(*)</span></label>
                 <div class="form-group input-group">
                     <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
                     <input id="post-date" type="date" class="form-control">
                 </div>
                 
-                <label for="price">Giá</label>
+                <label for="price">Giá <span>(*)</span></label>
                 <div class="form-group input-group">
  					<span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
                     <input id="price" type="text" class="form-control">
                 </div>
                 
-                <label for="user-post">Người đăng</label>
+                <label for="user-post">Người đăng <span>(*)</span></label>
                 <div class="form-group input-group">
                     <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                     <input id="user-post" type="text" class="form-control">
                 </div>
                 
-                <label for="content">Nội dung</label>
+                <label for="content">Nội dung <span>(*)</span></label>
                 <div class="form-group input-group">
                     <span class="input-group-addon"><i class="fa fa-list-alt fa-fw"></i></span>
                     <textarea id="content" class="form-control" rows="3" placeholder="Nội dung"></textarea>
