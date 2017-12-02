@@ -135,6 +135,24 @@
             }
             
         })
+        .state('post-detail', {
+        	parent: 'admin',
+        	url: '/post-detail/{postID}',
+        	params: {alerts: null},
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/post/post-detail.html',
+                    controller: 'PostDetailController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+            	postID: ['$stateParams', function($stateParams) {
+                    return $stateParams.postID;
+                }]
+            }
+            
+        })
         .state('report-list', {
         	parent: 'admin',
         	url: '/report-list',

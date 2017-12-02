@@ -26,13 +26,11 @@
 			}).then(function(response) {
 				vm.posts = response.data;
 
-				console.log(vm.posts);
 				if(vm.posts.length == 0) {
 					var alert = { type: 'danger', msg: 'Không tìm thấy bài đăng nào!'};
 					vm.alerts.push(alert);
 				}
 	        }, function(response) {
-	            console.log(response);
 	        });
 		}
 		

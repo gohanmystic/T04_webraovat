@@ -46,7 +46,7 @@ public class PostDAO {
 		cmd.setLong(6, post.getPostTypeID());
 		cmd.setLong(7, post.getCategoryID());
 		cmd.setBoolean(8, post.getStatus());
-		cmd.setString(9, post.getImage());
+		cmd.setBinaryStream(9, null);
 		cmd.setLong(10, post.getPostID());
 		
 		int r= cmd.executeUpdate();	
@@ -120,15 +120,11 @@ public class PostDAO {
 			String query = "";
 			PreparedStatement cmd = null;
 			ResultSet rs = null;
-			if (CommonUtils.isNotBlank(filter)) {
-				if (filter.equals("filterTittle")) {
-					System.out.println(filter);
-					System.out.println(searchKey);
-					query = "SELECT * FROM dbo.[POST] u WHERE u.Title LIKE ? ORDER BY PostID DESC";
-					cmd = DB.Instance().cn.prepareStatement(query);
-					cmd.setString(1, "%" + searchKey + "%");
-					rs = cmd.executeQuery();
-				}			
+			if (CommonUtils.isNotBlank(searchKey)) {
+				query = "SELECT * FROM dbo.[POST] u WHERE u.Title LIKE ? ORDER BY PostID DESC";
+				cmd = DB.Instance().cn.prepareStatement(query);
+				cmd.setString(1, "%" + searchKey + "%");
+				rs = cmd.executeQuery();
 			} 
 			
 			while(rs.next()) {

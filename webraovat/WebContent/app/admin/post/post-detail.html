@@ -1,0 +1,97 @@
+<div class="container-fluid">
+	<div class="alert-custom">
+		<div uib-alert dismiss-on-timeout="3000" ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="vm.closeAlert($index)">{{alert.msg}}</div>
+	</div>
+    <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Chi tiết bài đăng</h1>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <form role="form" name="postCreateUpdate">
+            	<label for="title">Tiêu đề <span>(*)</span></label>
+                <div class="form-group" >
+                	<div class=" input-group">
+                		<span class="input-group-addon"><i class="fa fa-credit-card-alt fa-fw"></i></span>
+                    	<input disabled name="title" type="text" class="form-control" ng-model="vm.post.Title" required>
+                	</div>
+                </div>
+                
+                <label for="category">Loại danh mục <span>(*)</span></label>
+                <div class="form-group" >
+                	<div class=" input-group">
+	                	<span class="input-group-addon"><i class="fa fa-list-alt fa-fw"></i></span>
+	                    <select class="form-control" name="category"  ng-model="vm.post.CategoryID" ng-options="cate.CategoryID as cate.Name for cate in vm.categories" required>
+	                        <option>Chọn danh mục</option>
+	                    </select>
+                	</div>
+                </div>
+                
+                <label for="posttype">Loại bài đăng <span>(*)</span></label>
+                <div class="form-group">
+                	<div class=" input-group">
+                		 <span class="input-group-addon"><i class="fa fa-shopping-cart fa-fw"></i></span>
+	                    <div class="form-control">
+	                    	<label class="radio-inline">
+		                        <input disabled type="radio" name="PostTypeID" id="optionsRadiosInline1" value="1" ng-model="vm.post.PostTypeID" checked="checked">Đăng mua
+		                    </label>
+		                    <label class="radio-inline">
+		                        <input disabled type="radio" name="PostTypeID" id="optionsRadiosInline2" value="2" ng-model="vm.post.PostTypeID">Đăng bán
+		                    </label>
+	                    </div>
+                	</div>
+                </div>
+                
+                <label for="picture">Ảnh</label>
+                <div class="form-group input-group">
+                    <span class="input-group-addon"><i class="fa fa-picture-o fa-fw"></i></span>
+                    <input disabled id="picture" type="file" class="form-control" ng-model="vm.post.Image">
+                </div>
+                
+                <label for="post-date">Ngày đăng <span>(*)</span></label>
+                <div class="form-group" >
+                	<div class="input-group">
+                		<span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+                    	<input disabled name="CreationDate" type="date" class="form-control" ng-model="vm.post.CreationDate" disabled required>
+                	</div>
+                </div>
+                
+                <label for="price">Giá <span>(*)</span></label>
+                <div class="form-group" >
+                	<div class="input-group">
+                		<span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
+                    	<input disabled name="price" type="number" class="form-control" ng-model="vm.post.Price" required>
+                	</div>
+                </div>
+                
+                <label for="level">Người đăng <span>(*)</span></label>
+                <div class="form-group" >
+                	<div class="input-group">
+                		<span class="input-group-addon"><i class="fa fa-code fa-fw"></i></span>
+	                    <select disabled name="userID" class="form-control" ng-model="vm.post.UserID" ng-options="user.userID as user.fullName for user in vm.users">
+	                    	<option value="">Chọn người đăng</option>
+	                        <option value="0">Admin</option>
+	                        <option value="1">User</option>
+	                    </select>
+                	</div>
+                </div>
+                
+                <label for="content">Nội dung <span>(*)</span></label>
+                <div class="form-group" >
+                	<div class=" input-group">
+                		<span class="input-group-addon"><i class="fa fa-list-alt fa-fw"></i></span>
+                    	<textarea disabled name="content" class="form-control" rows="3" ng-model="vm.post.Content" required></textarea>
+                	</div>
+                </div>
+                
+                <div class="form-group" style="float:right">
+                    <button type="button" class="btn btn-default" onclick="window.history.back()"><i class="fa fa-undo fa-fw"></i>Trở về</button>
+                    <button type="button" class="btn btn-danger" ng-click="vm.delete()"><i class="fa fa-trash fa-fw"></i>Xóa</button>
+                    <button type="button" class="btn btn-success"  ng-click="vm.confirm()"><i class="fa fa-check fa-fw"></i>Duyệt</button>
+                    <button type="button" class="btn btn-info" ui-sref="post-update({postID : vm.post.PostID})"><i class="fa fa-pencil fa-fw"></i>Chỉnh sửa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

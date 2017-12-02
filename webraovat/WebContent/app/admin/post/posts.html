@@ -48,7 +48,7 @@
                                     <td>{{post.Price}}</td>
                                     <td><i ng-class="(post.Status) ? 'fa fa-check' : 'fa fa-ban'"></i></td>
                                     <td>
-                                    	<a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    	<a href="javascript:void(0)" ui-sref="post-detail({postID : post.PostID})"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             </tbody>

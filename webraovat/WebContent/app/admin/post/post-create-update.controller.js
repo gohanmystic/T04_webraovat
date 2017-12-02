@@ -3,8 +3,8 @@
 	angular
 		.module('webraovatApp')
 		.controller('PostCreateUpdateController', PostCreateUpdateController);
-	PostCreateUpdateController.$inject = ['$http', '$scope', '$state']
-	function PostCreateUpdateController($http, $scope, $state){
+	PostCreateUpdateController.$inject = ['$http', '$scope', '$state', 'postID']
+	function PostCreateUpdateController($http, $scope, $state, postID){
 		var vm = this;
 		vm.post = {};
 		vm.alerts = [];
@@ -35,7 +35,19 @@
 	        }, function(response) {
 	        });
 			
-			
+			if (postID != null) {
+				$http({
+					url : "PostController?action=detail",
+					method: "POST",
+					params: {
+						postID: postID
+					}
+				}).then(function(response) {
+					vm.post = response.data;
+					formatData();
+		        }, function(response) {
+		        });
+			}
 		}
 		
 		vm.save = function () {
@@ -46,24 +58,45 @@
                     invalidControl.focus();
                 }
 			} else {
-				$http({
-		            url : 'PostController?action=create',
-		            method : "POST",
-		            headers: {
-		            	Accept: "application/json; charset=utf-8",
-		            	"Content-Type" : "application/json; charset=utf-8"
-		            },
-					data: JSON.stringify(vm.post)
-		        }).then(function(response) {
-		        	if(response.data) {
-		        		var alert = { type: 'success', msg: 'Thêm bài đăng thành công!'};
-						vm.alerts.push(alert);
-						$state.go("post-list", {alerts : vm.alerts});
-		        	}
+				if(postID == null) {
+					$http({
+			            url : 'PostController?action=create',
+			            method : "POST",
+			            headers: {
+			            	Accept: "application/json; charset=utf-8",
+			            	"Content-Type" : "application/json; charset=utf-8"
+			            },
+						data: JSON.stringify(vm.post)
+			        }).then(function(response) {
+			        	if(response.data) {
+			        		var alert = { type: 'success', msg: 'Thêm bài đăng thành công!'};
+							vm.alerts.push(alert);
+							$state.go("post-list", {alerts : vm.alerts});
+			        	}
 
-		        }, function(response) {
-		            console.log(response);
-		        });
+			        }, function(response) {
+			            console.log(response);
+			        });
+				} else {
+					$http({
+			            url : 'PostController?action=update',
+			            method : "POST",
+			            headers: {
+			            	Accept: "application/json; charset=utf-8",
+			            	"Content-Type" : "application/json; charset=utf-8"
+			            },
+						data: JSON.stringify(vm.post)
+			        }).then(function(response) {
+			        	if(response.data) {
+			        		var alert = { type: 'success', msg: 'Cập nhật bài đăng thành công!'};
+							vm.alerts.push(alert);
+							$state.go("post-detail", {postID : postID, alerts : vm.alerts});
+			        	}
+
+			        }, function(response) {
+			        });
+				}
+				
 			}
 		}
 		
@@ -71,6 +104,15 @@
 			vm.post.UserID = "1";
 			vm.post.PostTypeID = "1";
 			vm.post.CreationDate = new Date();
+		}
+		
+		function formatData(){
+			if(vm.post.CreationDate) {
+				vm.post.CreationDate = new Date(vm.post.CreationDate);
+			}
+			vm.post.UserID = vm.post.UserID.toString();
+			vm.post.PostTypeID = vm.post.PostTypeID.toString();
+			vm.post.CategoryID = vm.post.CategoryID.toString();
 		}
 		
 		vm.closeAlert = function(index) {
