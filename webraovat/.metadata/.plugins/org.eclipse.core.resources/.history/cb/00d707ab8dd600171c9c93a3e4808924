@@ -1,0 +1,6 @@
+.form-group .help-block {
+	display: none;
+}
+.has-error .help-block {
+	display: block;
+}

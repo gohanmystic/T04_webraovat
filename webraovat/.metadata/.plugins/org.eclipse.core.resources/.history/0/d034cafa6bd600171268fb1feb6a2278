@@ -1,0 +1,13 @@
+(function(){
+	'use strict';
+	angular
+		.module('webraovatApp')
+		.controller('UserDetailController', UserDetailController);
+	
+	UserDetailController.$inject = ['$scope', '$http', '$filter', '$state', '$stateParams'];
+	function UserCreateUpdateController($scope, $http, $filter, $state, $stateParams){
+		var vm = this;
+		console.log("UserDetailController");
+	}
+	
+})();

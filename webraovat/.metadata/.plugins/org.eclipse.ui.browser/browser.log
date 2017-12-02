@@ -1,0 +1,5 @@
+
+thg 12 01, 2017 17:02:19.10 NEW SESSION
+thg 12 01, 2017 17:02:19.10 [20460:13340:1201/170219.093:ERROR:ssl_client_socket_impl.cc(1091)] handshake failed; returned -1, SSL error code 1, net_error -101
+thg 12 01, 2017 17:02:19.89 [20460:13340:1201/170219.899:ERROR:ssl_client_socket_impl.cc(1091)] handshake failed; returned -1, SSL error code 1, net_error -101
+thg 12 01, 2017 17:02:19.91 [20460:13340:1201/170219.899:ERROR:ssl_client_socket_impl.cc(1091)] handshake failed; returned -1, SSL error code 1, net_error -101

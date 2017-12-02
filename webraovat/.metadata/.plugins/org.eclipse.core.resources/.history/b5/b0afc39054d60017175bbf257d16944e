@@ -1,0 +1,59 @@
+(function(){
+	'use strict';
+	angular
+		.module('webraovatApp')
+		.controller('UserCreateUpdateController', UserCreateUpdateController);
+	
+	UserCreateUpdateController.$inject = ['$scope', '$http', '$filter', '$state', '$stateParams', 'entity'];
+	function UserCreateUpdateController($scope, $http, $filter, $state, $stateParams, entity){
+		var vm = this;
+		console.log(entity);
+		vm.user = {};
+		vm.load = load;
+		
+		vm.load();
+		function load() {
+
+			formatDataWhenLoad();
+		}
+		vm.save = function() {
+			$scope.$broadcast('show-errors-check-validity');
+			if ($scope.createUpdateForm.$invalid) {
+				var invalidControl = angular.element('input.ng-invalid').first() || angular.element('select.ng-invalid').first() ||angular.element('option.ng-invalid').first();
+				if (invalidControl != null) {
+                    invalidControl.focus();
+                }
+			} else {
+				formatDataBeforeSave();
+				console.log(vm.user);
+				$http({
+		            url : 'UserController?action=create',
+		            method : "POST",
+		            headers: {
+		            	Accept: "application/json; charset=utf-8",
+		            	"Content-Type" : "application/json; charset=utf-8"
+		            },
+					data: JSON.stringify(vm.user)
+		        }).then(function(response) {
+		        	if(response.data)
+		        		$state.go("user-list");
+
+		        }, function(response) {
+		            console.log(response);
+		        });
+			}
+		}
+		
+		function formatDataWhenLoad() {
+			if(vm.user.birthday) {
+				vm.user.birthday = new Date(vm.user.birthday);
+			}
+		}
+		
+		function formatDataBeforeSave() {
+			vm.user.birthday = $filter('date')(vm.user.birthday, 'yyyy-MM-dd');
+			console.log(vm.user.birthday);
+		}
+	}
+	
+})();

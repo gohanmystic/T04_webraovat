@@ -1,0 +1,52 @@
+(function(){
+	'use strict';
+	angular
+		.module('webraovatApp')
+		.controller('UserDetailController', UserDetailController);
+	
+	UserDetailController.$inject = ['userID', '$http', '$uibModal'];
+	function UserDetailController(userID, $http, $uibModal){
+		var vm = this;
+		vm.user = {};
+		vm.load = load;
+		vm.load();
+		
+		function load(){
+			$http({
+				url: "UserController?action=detail",
+				method: "POST",
+				params: {
+					userID: userID
+				}
+			}).then(function(response) {
+				vm.user = response.data;
+				formatData();
+	        }, function(response) {
+	            console.log(response);
+	        });
+		}
+		
+		function formatData(){
+			if(vm.user.birthday) {
+				vm.user.birthday = new Date(vm.user.birthday);
+			}
+			vm.user.level = vm.user.level.toString();
+			vm.user.gender = vm.user.gender.toString(); 
+		}
+		
+		vm.delete = function(userID) {
+			vm.modalInstantDeleteUser = $uibModal.open({
+                templateUrl: 'app/admin/user/user-delete-dialog.html',
+                controller: 'UserDeleteController',
+                controllerAs: 'vm',
+                size: 'md',
+                resolve: {
+                    userID: function() {
+                        return userID;
+                    }
+                }
+            });
+		}
+	}
+	
+})();

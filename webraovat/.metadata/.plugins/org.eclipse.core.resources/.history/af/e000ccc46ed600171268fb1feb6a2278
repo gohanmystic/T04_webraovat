@@ -1,0 +1,29 @@
+(function(){
+	'use strict';
+	angular
+		.module('webraovatApp')
+		.controller('UserDetailController', UserDetailController);
+	
+	UserDetailController.$inject = ['userID', '$http'];
+	function UserDetailController(userID, $http){
+		var vm = this;
+		vm.user = {};
+		vm.load = load;
+		vm.load();
+		
+		function load(){
+			$http({
+				url: "UserController?action=detail",
+				method: "POST",
+				params: {
+					userID: userID
+				}
+			}).then(function(response) {
+				vm.user = response.data;
+	        }, function(response) {
+	            console.log(response);
+	        });
+		}
+	}
+	
+})();

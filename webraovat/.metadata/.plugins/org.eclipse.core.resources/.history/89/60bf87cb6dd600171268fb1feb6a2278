@@ -1,0 +1,13 @@
+(function(){
+	'use strict';
+	angular
+		.module('webraovatApp')
+		.controller('UserDetailController', UserDetailController);
+	
+	UserDetailController.$inject = ['userID'];
+	function UserDetailController(userID){
+		var vm = this;
+		console.log(userID);
+	}
+	
+})();

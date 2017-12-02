@@ -1,0 +1,22 @@
+.form-group .help-block {
+	display: none;
+}
+.has-error .help-block {
+	display: block;
+}
+.alert-custom{
+	margin-bottom: 0;
+	margin-top: 37px;
+}
+.col-md-6.padding-0{
+	padding: 0;
+}
+
+.alert-fixed {
+    position:fixed; 
+    top: 0px; 
+    left: 0px; 
+    width: 100%;
+    z-index:9999; 
+    border-radius:0px
+}

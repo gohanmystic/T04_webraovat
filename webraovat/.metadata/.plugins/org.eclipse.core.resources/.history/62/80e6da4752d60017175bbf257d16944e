@@ -1,0 +1,120 @@
+(function() {
+    'use strict';
+
+    angular
+        .module('webraovatApp')
+        .config(stateAbsConfig)
+        .config(stateConfig);
+    
+    stateAbsConfig.$inject = [ '$stateProvider' ];
+    stateConfig.$inject = ['$stateProvider'];
+
+	function stateAbsConfig($stateProvider) {
+		$stateProvider.state('admin', {
+			url : '/admin',
+		});
+	}
+	
+    function stateConfig($stateProvider) {
+    	
+        $stateProvider
+        .state('account', {
+        	parent: 'admin',
+        	url: '/account',
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/account/account.html',
+                    controller: 'AccountController',
+                    controllerAs: 'vm'
+                }
+            },
+        })
+        .state('category-list', {
+        	parent: 'admin',
+        	url: '/category-list',
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/category/categories.html',
+                    controller: 'CategoryController',
+                    controllerAs: 'vm'
+                }
+            },
+        })
+        .state('category-create', {
+        	parent: 'admin',
+        	url: '/category-create',
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/category/category-create-update.html',
+                    controller: 'CategoryCreateUpdateController',
+                    controllerAs: 'vm'
+                }
+            },
+        })
+        .state('post-list', {
+        	parent: 'admin',
+        	url: '/post-list',
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/post/posts.html',
+                    controller: 'PostController',
+                    controllerAs: 'vm'
+                }
+            },
+        })
+        .state('post-create', {
+        	parent: 'admin',
+        	url: '/post-create',
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/post/post-create-update.html',
+                    controller: 'PostCreateUpdateController',
+                    controllerAs: 'vm'
+                }
+            },
+        })
+        .state('report-list', {
+        	parent: 'admin',
+        	url: '/report-list',
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/report/reports.html',
+                    controller: 'ReportController',
+                    controllerAs: 'vm'
+                }
+            },
+        })
+        .state('report-create', {
+        	url: '/report-create/{id}',
+        	params: {
+        		id: $stateParams.id,
+        	},
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/report/report-create-update.html',
+                    controller: 'ReportCreateUpdateController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                id: ['$stateParams', function($stateParams) {
+                    return $stateParams.id;
+                }]
+            }
+        })
+        .state('user-list', {
+        	parent: 'admin',
+        	url: '/user-list',
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/user/users.html',
+                    controller: 'UserController',
+                    controllerAs: 'vm'
+                }
+            },
+        })
+        
+    }
+    
+    
+})();

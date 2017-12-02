@@ -1,0 +1,4 @@
+.help-block,.ng-touched .ng-invalid,.has-error .help-block{
+    color:red !important;
+    position: absolute;
+  }

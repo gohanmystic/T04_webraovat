@@ -1,0 +1,35 @@
+(function(){
+	'use strict';
+	angular
+		.module('webraovatApp')
+		.controller('UserDeleteController', UserDeleteController);
+	
+	UserDeleteController.$inject = ['userID', '$uibModalInstance', '$http', '$state'];
+	function UserDeleteController(userID, $uibModalInstance, $http, $state){
+		var vm = this;
+		console.log("delete: ", userID);
+		
+		vm.no = function() {
+			$uibModalInstance.close();
+		}
+		
+		vm.yes = function() {
+			if(userID != null) {
+				$http({
+					url: "UserController?action=delete",
+					method: "POST",
+					params: {
+						userID: userID,
+					}
+				}).then(function(response) {
+					if(response.data)
+						$state.go("user-list");
+					$uibModalInstance.close();
+		        }, function(response) {
+		            console.log(response);
+		        });
+			}
+		}
+	}
+	
+})();

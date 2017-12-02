@@ -1,0 +1,94 @@
+
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Thêm User</h1>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <form role="form" name="">
+            	
+            	<label for="name">Họ tên <span></span></label>
+                <div class="form-group" >
+                	<div class=" input-group">
+                		<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                    	<input disabled type="text" name="name"  class="form-control" ng-model="vm.user.fullName" >
+                	</div>
+                </div>
+                <label for="phone">Số điện thoại <span></span></label>
+                <div class="form-group" >
+                	<div class=" input-group">
+                		<span class="input-group-addon"><i class="fa fa-phone-square fa-fw"></i></span>
+                    	<input disabled type="text" name="phone" class="form-control" ng-model="vm.user.phone" ng-pattern="/^[0-9]{10,20}$/" >
+                	</div>
+                </div>
+                
+                <label for="birthday">Ngày sinh</label>
+                <div class="form-group input-group">
+                    <span class="input-group-addon"><i class="fa fa-birthday-cake fa-fw"></i></span>
+                    <input disabled id="birthday" type="date" class="form-control" ng-model="vm.user.birthday">
+                </div>
+                <label for="gender">Giới tính</label>
+                <div class="form-group input-group" id="gender">
+                    <span class="input-group-addon"><i class="fa fa-venus fa-fw"></i></span>
+                    <div class="form-control">
+                    	<label class="radio-inline">
+	                        <input disabled type="radio" name="optionsRadiosInline" value="0" ng-model="vm.user.gender" checked>Nam
+	                    </label>
+	                    <label class="radio-inline">
+	                        <input disabled type="radio" name="optionsRadiosInline" value="1" ng-model="vm.user.gender">Nữ
+	                    </label>
+                    </div>
+                </div>
+                
+                <label for="address">Địa chỉ</label>
+                <div class="form-group input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker fa-fw"></i></span>
+                    <input disabled id="address" type="text" class="form-control" ng-model="vm.user.address" googleplace>
+                </div>
+                
+                <label for="email">Email</label>
+                <div class="form-group" >
+                	<div class="input-group">
+                		<span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                    	<input disabled type="email" name="email" class="form-control" ng-model="vm.user.email">
+                	</div>
+                </div>
+                
+                <label for="username">Tài khoản <span></span></label>
+                <div class="form-group" >
+                	<div class="input-group">
+                		<span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                    	<input disabled type="text" name="username" class="form-control" ng-model="vm.user.userName" >
+                	</div>
+                </div>
+                
+                <label for="password">Mật khẩu <span></span></label>
+                <div class="form-group" >
+                	<div class="input-group">
+	                	<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+	                    <input disabled type="password" name="password" class="form-control" ng-model="vm.user.passWord" >
+                	</div>
+                </div>
+                
+                <label for="level">Quyền <span></span></label>
+                <div class="form-group" >
+                	<div class="input-group">
+                		<span class="input-group-addon"><i class="fa fa-code fa-fw"></i></span>
+	                    <select disabled name="level" class="form-control" ng-model="vm.user.level" >
+	                        <option value="0">Admin</option>
+	                        <option value="1">User</option>
+	                    </select>
+                	</div>
+                </div>
+                
+                <div class="form-group" style="float:right">
+                    <button type="button" class="btn btn-default"><i class="fa fa-undo fa-fw"></i>Trở về</button>
+                    <button type="button" class="btn btn-info"><i class="fa fa-pencil fa-fw"></i>Chỉnh sửa</button>
+                    <button ng-click="vm.save()" type="button" class="btn btn-success"><i class="fa fa-floppy-o fa-fw"></i>Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
