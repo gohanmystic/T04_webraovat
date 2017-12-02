@@ -32,6 +32,7 @@
         .state('category-list', {
         	parent: 'admin',
         	url: '/category-list',
+        	params: {alerts: null},
         	views: {
                 'content@': {
                     templateUrl: 'app/admin/category/categories.html',
@@ -50,6 +51,43 @@
                     controllerAs: 'vm'
                 }
             },
+            resolve: {
+            	cateID: function() {
+            		return null;
+            	}
+            }
+        })
+        .state('category-update', {
+        	parent: 'admin',
+        	url: '/category-update/{cateID}',
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/category/category-create-update.html',
+                    controller: 'CategoryCreateUpdateController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+            	cateID: ['$stateParams', function($stateParams) {
+                    return $stateParams.cateID;
+                }]
+            }
+        })
+        .state('category-detail', {
+        	parent: 'admin',
+        	url: '/category-detail/{cateID}',
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/category/category-detail.html',
+                    controller: 'CategoryDetailController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+            	cateID: ['$stateParams', function($stateParams) {
+                    return $stateParams.cateID;
+                }]
+            }
         })
         .state('post-list', {
         	parent: 'admin',
@@ -72,6 +110,28 @@
                     controllerAs: 'vm'
                 }
             },
+            resolve: {
+            	postID: function() {
+            		return null;
+            	}
+            }
+        })
+        .state('post-update', {
+        	parent: 'admin',
+        	url: '/post-update/{postID}',
+        	views: {
+                'content@': {
+                    templateUrl: 'app/admin/post/post-create-update.html',
+                    controller: 'PostCreateUpdateController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+            	postID: ['$stateParams', function($stateParams) {
+                    return $stateParams.postID;
+                }]
+            }
+            
         })
         .state('report-list', {
         	parent: 'admin',
