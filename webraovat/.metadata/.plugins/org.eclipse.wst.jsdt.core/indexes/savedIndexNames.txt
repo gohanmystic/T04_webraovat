@@ -1,8 +1,0 @@
-INDEX VERSION 1.4+E:\RUP\webraovat\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2945923646.index
-993827666.index
-1939004700.index
-3634958434.index
-1099177427.index
-2857221628.index
-880242112.index
