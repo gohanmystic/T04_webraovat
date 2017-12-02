@@ -21,5 +21,9 @@ public class Category {
 		CategoryID = categoryID;
 		Name = name;
 	}
+	public Category() {
+		super();
+	}
+	
 	
 }

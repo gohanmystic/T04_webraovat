@@ -15,9 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import BO.CategoryBO;
-import BO.UserBO;
 import Bean.Category;
-import Bean.User;
 import Utils.CommonUtils;
 
 /**
@@ -45,16 +43,14 @@ public class CategoryController extends HttpServlet {
 
 	CategoryBO cateBO = new CategoryBO();
 	
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		if(request.getParameter("action").equals("create")) {
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		    Category cate = gson.fromJson(request.getReader().readLine(), Category.class);
-			int result = cateBO.themdm(cate);
+			int result = cateBO.insertCate(cate);
 			out.print((result == 1) ? true : false); 
 		}
 		if(request.getParameter("action").equals("getall")) {
@@ -63,13 +59,33 @@ public class CategoryController extends HttpServlet {
 			String filter = request.getParameter("filter");
 
 			if(CommonUtils.isNotBlank(searchKey)) {
-//				result = userBO.searchUserBySearchKey(searchKey, filter);
+			result = cateBO.searchCateBySearchKey(searchKey, filter);
 			} else {
-				result = cateBO.getDanhMuc();
-			}
-			
+				result = cateBO.findAll();
+			}			
 			out.print(new Gson().toJson(result));
 		}
-	}
+		
+		if(request.getParameter("action").equals("update")) {
+			 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			 Category cate = gson.fromJson(request.getReader().readLine(), Category.class);
+			 int result = cateBO.updateCate(cate);
+			 out.print((result == 1) ? true : false); 
+		}
+		if(request.getParameter("action").equals("delete")) {
+			if(request.getParameter("userID") != null) {
+				long CategoryID = Long.parseLong(request.getParameter("CategoryID"));
+				int result = cateBO.deleteCateById(CategoryID);
+				out.print((result == 1) ? true : false); 
+			}
+		}
+		if(request.getParameter("action").equals("detail")) {
+			if(request.getParameter("userID") != null) {
+				long CategoryID = Long.parseLong(request.getParameter("CategoryID"));
+				Category result = cateBO.getCateById(CategoryID);
+				out.print(new Gson().toJson(result));
+			}
+		}
 
 }
+	}
