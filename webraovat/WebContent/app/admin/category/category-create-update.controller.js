@@ -12,7 +12,19 @@
 		vm.load();
 		
 		function load() {
-			
+			if(cateID != null) {
+				$http({
+					url : "CategoryController?action=detail",
+					method: "POST",
+					params: {
+						CategoryID : cateID
+					}
+				}).then(function(response) {
+					vm.cate = response.data;
+		        }, function(response) {
+		            console.log(response);
+		        });
+			}
 		}
 		
 		vm.save = function() {
@@ -51,13 +63,12 @@
 			            	Accept: "application/json; charset=utf-8",
 			            	"Content-Type" : "application/json; charset=utf-8"
 			            },
-						data: JSON.stringify(vm.user)
+						data: JSON.stringify(vm.cate)
 			        }).then(function(response) {
 			        	if(response.data) {
-//			        		var alert = { type: 'success', msg: 'Cập nhật Danh mục thành công!'};
-//							vm.alerts.push(alert);
-//			        		$state.go("user-detail", {userID : userID, alerts : vm.alerts});
-			        		console.log(response.data);
+			        		var alert = { type: 'success', msg: 'Cập nhật Danh mục thành công!'};
+							vm.alerts.push(alert);
+			        		$state.go("category-detail", {cateID : cateID, alerts : vm.alerts});
 			        	}
 			        		
 			        	

@@ -25,8 +25,8 @@ public class PostDAO {
 		cmd.setLong(5, post.getUserID());
 		cmd.setLong(6, post.getPostTypeID());
 		cmd.setLong(7, post.getCategoryID());
-		cmd.setBoolean(8, post.getStatus());
-		cmd.setString(9, post.getImage());
+		cmd.setBoolean(8, false);
+		cmd.setBinaryStream(9, null);
 
 		int r= cmd.executeUpdate();		
 		
@@ -69,13 +69,13 @@ public class PostDAO {
 			post.setPostID(rs.getLong("PostID"));
 			post.setTitle(rs.getString("Title"));
 			post.setCreationDate(rs.getDate("CreationDate"));
-			post.setContent(rs.getString("[Content]"));
+			post.setContent(rs.getString("Content"));
 			post.setPrice(rs.getLong("Price"));
 			post.setUserID(rs.getLong("UserID"));
 			post.setPostTypeID(rs.getLong("PostTypeID"));
 			post.setCategoryID(rs.getLong("CategoryID"));
 			post.setStatus(rs.getBoolean("Status"));
-			post.setImage(rs.getString("Image"));
+			post.setImage(null);
 			
 		}catch(Exception e) {
 			e.printStackTrace();

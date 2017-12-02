@@ -1,11 +1,22 @@
 <div class="container-fluid">
-    
+    <div class="alert-custom">
+		<div uib-alert dismiss-on-timeout="3000" ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="vm.closeAlert($index)">{{alert.msg}}</div>
+	</div>
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Danh sách bài đăng</h1>
         </div>
     </div>
-
+	<div class="search-box">
+    	<form class="form-inline">
+    		<input type="text" class="form-control" placeholder="Nhập tiêu đề..." ng-model="vm.searchKeyPost">
+    		<select ng-model="vm.filter" class="form-control">
+    			<option value="filterName">Lọc tiêu đề</option>
+    			<option value="filterPhone">Lọc giá</option>
+    		</select>
+    		<button type="button" class="btn btn-info" ng-click="vm.search()"><i class="fa fa-search" aria-hidden="true"></i></button>
+    	</form>
+    </div>
         <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
@@ -28,25 +39,14 @@
                                     <th class="text-center">Thao tác</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-center">
+                            <tbody class="text-center" ng-repeat="post in vm.posts">
                                 <tr class="odd">
-                                    <td>Iphone X</td>
-                                    <td>20/11/2017</td>
-                                    <td>Đăng bán</td>
-                                    <td>Đồ điện tử</td>
-                                    <td>2000000</td>
-                                    <td><i class="fa fa-check"></i></td>
-                                    <td>
-                                    	<a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="even">
-                                    <td>Xe đạp điện</td>
-                                    <td>15/11/2017</td>
-                                    <td>Đăng mua</td>
-                                    <td>Xe cộ</td>
-                                    <td>500000</td>
-                                    <td><i class="fa fa-ban"></i></td>
+                                    <td>{{post.Title}}</td>
+                                    <td>{{post.CreationDate}}</td>
+                                    <td>{{(post.PostTypeID === 1) ? "Đăng mua" : "Đăng bán"}}</td>
+                                    <td>{{post.CategoryID}}</td>
+                                    <td>{{post.Price}}</td>
+                                    <td><i ng-class="(post.Status) ? 'fa fa-check' : 'fa fa-ban'"></i></td>
                                     <td>
                                     	<a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>
@@ -64,9 +64,4 @@
     </div>
     <!-- /.row -->
 </div>
-<script>
-	$('#post-table').DataTable({
-	    responsive: true
-	});
-</script>
     

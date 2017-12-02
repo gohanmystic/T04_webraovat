@@ -76,6 +76,7 @@
         .state('category-detail', {
         	parent: 'admin',
         	url: '/category-detail/{cateID}',
+        	params: {alerts : null},
         	views: {
                 'content@': {
                     templateUrl: 'app/admin/category/category-detail.html',
@@ -92,6 +93,7 @@
         .state('post-list', {
         	parent: 'admin',
         	url: '/post-list',
+        	params: {alerts : null},
         	views: {
                 'content@': {
                     templateUrl: 'app/admin/post/posts.html',
