@@ -1,6 +1,7 @@
 package BO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Bean.Category;
 import DAO.CategoryDAO;
@@ -8,7 +9,7 @@ import DAO.CategoryDAO;
 public class CategoryBO {
 	CategoryDAO dm = new CategoryDAO();
 	
-	public ArrayList<Category> getDanhMuc(){
+	public List<Category> getDanhMuc(){
 		return dm.getDanhMuc();
 	}
 	//xoa
@@ -20,8 +21,8 @@ public class CategoryBO {
 		return dm.Update(categoryID, name);
 	}
 	// them
-	public int themdm(String categoryID, String name ){
-		return dm.Add(categoryID, name);
+	public int themdm(Category cate){
+		return dm.Add(cate);
 	}
 	//select sach theo ma
 	public Category gettheoma(String categoryID){

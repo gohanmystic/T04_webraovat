@@ -3,18 +3,18 @@ package DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import Bean.Category;
 import Database.DB;
 
 public class CategoryDAO {
-	public int Add(String categoryID, String name){
+	public int Add(Category cate){
 		try{
 			DB.Instance().Connect();
-			String sql="insert into dbo.CATEGORY (CategoryID,Name) values(?,?)";
+			String sql="insert into dbo.CATEGORY (Name) values(?)";
 			PreparedStatement cmd = DB.Instance().cn.prepareStatement(sql);
-			cmd.setString(1, categoryID);	
-			cmd.setString(2, name);
+			cmd.setString(1, cate.getName());	
 			
 			int kq = cmd.executeUpdate();
 			DB.Instance().cn.close();
@@ -75,13 +75,13 @@ public class CategoryDAO {
 		}
 			return null;
 	}	
-	public ArrayList<Category> getDanhMuc(){
+	public List<Category> getDanhMuc(){
 		try {
 			DB.Instance().Connect();
 			String sql="select * from dbo.CATEGORY" ;
 			PreparedStatement cmd = DB.Instance().cn.prepareStatement(sql);
 			ResultSet rs= cmd.executeQuery();
-			ArrayList<Category> ds=new ArrayList<Category>();
+			List<Category> ds=new ArrayList<Category>();
 			while (rs.next()) {
 	
 				Category sach = new  Category(rs.getString("categoryID"),rs.getString("Name"));

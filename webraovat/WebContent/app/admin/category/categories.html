@@ -1,11 +1,18 @@
 <div class="container-fluid">
-    
+    <div class="alert-custom">
+		<div uib-alert dismiss-on-timeout="3000" ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')" close="vm.closeAlert($index)">{{alert.msg}}</div>
+	</div>
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Danh sách danh mục</h1>
         </div>
     </div>
-
+	<div class="search-box">
+    	<form class="form-inline">
+    		<input type="text" class="form-control" placeholder="Nhập tên danh mục ..." ng-model="vm.searchKey">
+    		<button type="button" class="btn btn-info" ng-click="vm.search()"><i class="fa fa-search" aria-hidden="true"></i></button>
+    	</form>
+    </div>
         <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
@@ -24,28 +31,10 @@
                                 </tr>
                             </thead>
                             <tbody class="text-center">
-                                <tr class="odd">
-                                    <td>Đồ điện tử</td>
+                                <tr class="odd" ng-repeat="cate in vm.categories">
+                                    <td>{{cate.Name}}</td>
                                     <td>
-                                    	<a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="even">
-                                    <td>Xe cộ</td>
-                                    <td>
-                                    	<a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="odd">
-                                    <td>Quần áo</td>
-                                    <td>
-                                    	<a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </td>
-                                </tr>
-                                <tr class="even">
-                                    <td>Đồ gia dụng</td>
-                                    <td>
-                                    	<a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    	<a href="javascript:void(0)" ui-sref="category-detail({cateID: cate.CategoryID})"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -61,9 +50,4 @@
     </div>
     <!-- /.row -->
 </div>
-<script>
-	$('#category-table').DataTable({
-	    responsive: true
-	});
-</script>
     

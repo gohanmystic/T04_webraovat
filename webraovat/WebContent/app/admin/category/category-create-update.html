@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <form role="form" name="CateCreateUpdateForm">
             
-            	<label for="category-id">Mã danh mục <span>(*)</span></label>
+            	<!-- <label for="category-id">Mã danh mục <span>(*)</span></label>
                 <div class="form-group" show-errors>
                 	<div class="input-group">
                 		<span class="input-group-addon"><i class="fa fa-code fa-fw"></i></span>
@@ -16,7 +16,7 @@
                 	</div>
                     <p class="help-block" ng-if="CateCreateUpdateForm.CateID.$error.required">Mã danh mục không được bỏ trống!</p>
                 </div>
-                
+                 -->
                 <label for="category-name">Tên danh mục <span>(*)</span></label>
                 <div class="form-group" show-errors>
                 	<div class=" input-group">
@@ -28,7 +28,7 @@
                 <div class="form-group" style="float:right">
                     <button type="button" class="btn btn-default"><i class="fa fa-undo fa-fw"></i>Trở về</button>
                     <button type="button" class="btn btn-info"><i class="fa fa-refresh fa-fw"></i>Làm mới</button>
-                    <button type="button" class="btn btn-success"><i class="fa fa-floppy-o fa-fw" ng-click="vm.save()"></i>Lưu</button>
+                    <button type="button" class="btn btn-success" ng-click="vm.save()"><i class="fa fa-floppy-o fa-fw"></i>Lưu</button>
                 </div>
             </form>
         </div>
