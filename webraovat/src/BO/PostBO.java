@@ -1,36 +1,61 @@
 package BO;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 import DAO.PostDAO;
+import Database.DB;
+import Bean.Post;
+import Bean.User;
 
 public class PostBO {
-	PostDAO post = new PostDAO();
-	public int insertPost(int postID, String title, Date creationDate, String content, long price, long userID, long postTypeID,
-			long categoryID, Boolean status, String image){
+	PostDAO postDAO = new PostDAO();
+	public int insertPost(Post post){
 		try {
-			return post.insertPost(postID, title, creationDate, content, price, userID, postTypeID, categoryID, status, image);
+			return postDAO.insertPost(post);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
 		}
 	}
-	public int updatePost(int postID, String title, Date creationDate, String content, long price, long userID, long postTypeID,
-			long categoryID, Boolean status, String image){		
+	public int updatePost(Post post){		
 		try {
-			return post.updatePost(postID, title, creationDate, content, price, userID, postTypeID, categoryID, status, image);
+			return postDAO.updatePost(post);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
 		}
 	}
 	
-	public int deletePost(int postID){		
+	public int deletePost(long postID){		
 		try {
-			return post.deletePost(postID);
+			return postDAO.deletePost(postID);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
+		}
+	}
+	public Post getPostById(long postID) throws SQLException {	
+		return postDAO.getPostById(postID);
+	}
+	public List<Post> findAll() throws SQLException{
+		return postDAO.findAll();
+	}
+	public List<Post> searchPostBySearchKey(String searchKey, String filter){
+		try {
+			return postDAO.searchPostBySearchKey(searchKey, filter);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public int updateStatusById(long postID, int status) {
+		try {
+			return postDAO.updateStatusById(postID, status);
+		} catch (SQLException e) {
 			return 0;
 		}
 	}

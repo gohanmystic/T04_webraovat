@@ -18,7 +18,7 @@ public class DB {
 	public void Connect() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			String url = "jdbc:sqlserver://DESKTOP-OFS27EB\\SQLEXPRESS:1433;databaseName=webraovat;user=sa; password=123";
+			String url = "jdbc:sqlserver://DESKTOP-G21B0UL\\SQLEXPRESS:50290;databaseName=webraovat;user=sa; password=123";
 			cn = DriverManager.getConnection(url);
 			
 		}catch(Exception e) {

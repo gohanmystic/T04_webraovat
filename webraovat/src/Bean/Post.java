@@ -3,7 +3,7 @@ package Bean;
 import java.util.Date;
 
 public class Post {
-	private int PostID;
+	private long PostID;
 	private String Title;
 	private Date CreationDate;
 	private String Content;
@@ -14,7 +14,11 @@ public class Post {
 	private Boolean Status;
 	private String Image;
 	
-	public Post(int postID, String title, Date creationDate, String content, long price, long userID, long postTypeID,
+	
+	public Post() {
+		super();
+	}
+	public Post(long postID, String title, Date creationDate, String content, long price, long userID, long postTypeID,
 			long categoryID, Boolean status, String image) {
 		super();
 		PostID = postID;
@@ -28,10 +32,10 @@ public class Post {
 		Status = status;
 		Image = image;
 	}
-	public int getPostID() {
+	public long getPostID() {
 		return PostID;
 	}
-	public void setPostID(int postID) {
+	public void setPostID(long postID) {
 		PostID = postID;
 	}
 	public String getTitle() {
