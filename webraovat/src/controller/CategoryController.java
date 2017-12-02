@@ -73,14 +73,14 @@ public class CategoryController extends HttpServlet {
 			 out.print((result == 1) ? true : false); 
 		}
 		if(request.getParameter("action").equals("delete")) {
-			if(request.getParameter("userID") != null) {
+			if(request.getParameter("CategoryID") != null) {
 				long CategoryID = Long.parseLong(request.getParameter("CategoryID"));
 				int result = cateBO.deleteCateById(CategoryID);
 				out.print((result == 1) ? true : false); 
 			}
 		}
 		if(request.getParameter("action").equals("detail")) {
-			if(request.getParameter("userID") != null) {
+			if(request.getParameter("CategoryID") != null) {
 				long CategoryID = Long.parseLong(request.getParameter("CategoryID"));
 				Category result = cateBO.getCateById(CategoryID);
 				out.print(new Gson().toJson(result));
