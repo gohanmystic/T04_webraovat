@@ -3,8 +3,8 @@
 	angular
 		.module('webraovatApp')
 		.controller('MainController', MainController);
-	
-	function MainController(){
+	MainController.$inject = ['$state', '$localStorage', '$location']
+	function MainController($state, $localStorage, $location){
 	}
 	
 })();

@@ -12,7 +12,7 @@
 	function stateAbsConfig($stateProvider) {
 		$stateProvider.state('admin', {
 			url : '/admin',
-		});
+		})
 	}
 	
     function stateConfig($stateProvider) {
